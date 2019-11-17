@@ -1,0 +1,33 @@
+/* Bordered form */
+form {
+    border: 50px solid #F8F8F8;
+}
+
+
+/* inputs */
+input[type=text], input[type=password] {
+    margin: 1% auto;
+    display: block;
+}
+
+
+/* Set a style for all buttons */
+input[type="submit"] {
+    width: 8%;
+}
+
+
+/* Add a hover effect for buttons */
+input[type="submit"]:hover {
+    opacity: 0.8;
+}
+
+
+/* Center the avatar image inside this container */
+div.imgcontainer {
+    text-align: center;
+    margin: 24px 0 12px 0;
+    font-size: 500%;
+}
+
+

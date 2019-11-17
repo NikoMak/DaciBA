@@ -1,0 +1,71 @@
+{% extends "tagcloud/base.html" %}
+
+{% block title %}
+    Tagcloud
+{% endblock %}
+
+{% block head %}
+    <script>var csrftoken = '{{ csrf_token }}';</script>
+    {% load static %}
+    <!--
+    <link rel="stylesheet" type="text/css" href="{% static 'tagcloud/css/SampleCSS.css' %}" />
+    <script src="{% static 'tagcloud/js/SampleJS.js' %}"></script>
+    -->
+    <script defer src="{% static 'tagcloud/js/ajax_get_topics.js' %}"></script>
+{% endblock %}
+
+
+{% block body %}
+    <header>
+
+    </header>
+
+    <div style="padding: 5%">
+
+        <br/><br/>
+
+        <h1 style="text-align: center">Willkommen zu Ihrer persönlichen Tagcloud</h1>
+
+        <br/><br/>
+
+        <form action="{% url 'tag_erfassen' %}" method="post" id="myForm" name="newTag">
+            {% csrf_token %}
+
+            <select name="project" id="project">
+                <option value="" disabled selected>Projekt ausw&auml;hlen...</option>
+                {% for project in projects %}
+                <option value="{{ project.id }}">{{ project.project }}</option>
+                {% endfor %}
+            </select>
+
+            <select name="topic" id="topic">
+                <option value="" disabled selected>Projekt ausw&auml;hlen...</option>
+            </select>
+
+            <input type="text" name="tag" id="tag" placeholder="Tag eingeben..." />
+
+            <input type="submit" value="Speichern" />
+
+        </form>
+
+        <br/><br/>
+
+        <div>
+            Ihre erfassten Tags:<br/>
+            {% for tag in tags %}
+            <br/>
+            {{ tag.tag }}
+            {% endfor %}
+        </div>
+
+        <br/><br/>
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+
+    </div>
+{% endblock %}

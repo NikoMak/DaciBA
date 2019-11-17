@@ -1,0 +1,52 @@
+{% extends "tagcloud/base.html" %}
+
+{% block head %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'tagcloud/css/login.css' %}" />
+{% endblock %}
+
+{% block title %}
+    Login
+{% endblock %}
+
+
+{% block body %}
+    <form action="{% url 'login' %}"  method="post">
+        {% csrf_token %}
+
+        <br/><br/>
+
+        <div class="imgcontainer">
+            <i class="far fa-user-circle"></i>
+        </div>
+
+        <div class="container">
+
+            <input type="text" placeholder="Username eingeben..." name="username" required/>
+
+            <input type="password" placeholder="Passwort eingeben..." name="password" required/>
+
+            <button type="submit" id="fromSubmitBtn" name="submitBtn" onclick="this.style.display = 'none'; document.getElementById('btn-spinner').style.display = 'inline-block';">
+                Log In
+            </button>
+            <button type="button" id="btn-spinner" style="display: none;" onclick="this.style.display = 'none'; document.getElementById('formSubmitBtn').style.display = 'inline-block'; return false;">
+                <i id="fa-spinner" class="fas fa-spinner fa-pulse"></i>
+            </button>
+
+            <br/><br/>
+
+            <!--span><a href="#">Passwort vergessen?</a></span-->
+
+            <br/><br/>
+
+            {% if message %}
+            <div>
+                {{ message }}
+            </div>
+            {% endif %}
+
+        </div>
+
+    </form>
+
+{% endblock %}
